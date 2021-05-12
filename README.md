@@ -1,5 +1,5 @@
 # augbin_rheum
-R package for analysing composite responder endpoints in rheumatology with up to two continuous and one binary components. Shiny app for package with further documentation available at https://github.com/martinamcm/AugBin
+Development version of an R package for analysing composite responder endpoints in rheumatology with up to two continuous and one binary components. Shiny app for package with further documentation available at https://github.com/martinamcm/AugBin
 
 ### References
 
