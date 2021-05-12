@@ -1,0 +1,17 @@
+Package: augbinrheum
+Type: Package
+Title: Analysis of Composite Responder Endpoints with Multiple Continuous Components
+Version: 0.1.0
+Authors@R: c(person(given   = "Martina", family = "McMenamin",
+                    email   = "mmcm@hku.hk",
+                    role    = c("aut")))
+Description: Fits the augmented binary method...
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    MASS,
+    mvtnorm,
+    stats,
+Date: 2021-05-12
+URL: https://github.com/martinamcm/AugBin
+RoxygenNote: 7.1.1
