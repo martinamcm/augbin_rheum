@@ -2,9 +2,10 @@ Package: augbinrheum
 Type: Package
 Title: Analysis of Composite Responder Endpoints with Multiple Continuous Components
 Version: 0.1.0
-Authors@R: c(person(given   = "Martina", family = "McMenamin",
+Authors@R: c(person(given   = "Martina", 
+                    family = "McMenamin",
                     email   = "mmcm@hku.hk",
-                    role    = c("aut")))
+                    role    = c("aut","cre")))
 Description: Fits the augmented binary method...
 License: MIT + file LICENSE
 Encoding: UTF-8
