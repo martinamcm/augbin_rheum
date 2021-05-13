@@ -78,7 +78,7 @@ probofsuccess_20<-function(mle,n,dat,eta)
   lower=c(qnorm(1e-15,minmean1,exp(mle[5])),qnorm(1e-15,minmean2,exp(mle[6])))
   upper=c(eta[1],eta[2])
   
-  a=cuhre(f=integrand_20,nComp=2,lower=lower,upper=upper,flags=list(verbose=0,final=1,pseudo.random=0,mersenne.seed=NULL),
+  a=cuhre(f=integrand_20,nComp=2,lowerLimit=lower,upperLimit=upper,flags=list(verbose=0,final=1,pseudo.random=0,mersenne.seed=NULL),
           meantreat=meantreat,meanuntreat=meanuntreat,mle=mle)
   #return(c(a$value[1],a$value[2]))
   #return(c(a$value[1]-a$value[2],a$value[1],a$value[2]))

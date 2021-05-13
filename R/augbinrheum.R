@@ -4,18 +4,16 @@
 #' variable model allowing for up to two continuous components 
 #' and one binary component, common in rheumatic conditions.
 #' 
-#'
 #' The responder outcome is assumed to define a responder when
 #' continuous components are below a particular dichotomisation threshold and
 #' a binary component is 0.
 #' 
-#' Available as a Shiny app with documentation at \href{https://github.com/martinamcm/AugBin}{https://github.com/martinamcm/AugBin}
+#' Available as a Shiny app with documentation at https://github.com/martinamcm/AugBin
 #' 
 #' @references 
 #' McMenamin M, Grayling MJ, Berglind A, Wason JMS. Increasing power in the 
 #' analysis of responder endpoints in rheumatology: a software tutorial.
-#' medRxiv. 2020. \href{https://doi.org/10.1101/2020.07.28.20163378}{https://doi.org/10.1101/2020.07.28.20163378}
-#'
+#' medRxiv. 2020. doi: 10.1101/2020.07.28.20163378
 #'
 #' @param data A dataset to analyse. Must be an object of class data.frame
 #' details. Defaults to NULL. 
@@ -28,12 +26,14 @@
 #' For more than one continuous components values must be entered as e.g. c(0,0). 
 #' Defaults to NULL.
 #' @author Martina McMenamin.
-#' @examples
-#' Example data available at \href{https://github.com/martinamcm/AugBin}{https://github.com/martinamcm/AugBin} for cts=1 and bin=1
-#' odds_ratio <- augbin()$odds_ratio
-#' risk_ratio <- augbin()$risk_ratio
-#' risk_diff <- augbin()$risk_diff
-#' response_prob <- augbin()$response_prob
+#' @importFrom cubature cuhre
+#' @importFrom Matrix nearPD
+#' @importFrom brglm brglm
+#' @importFrom boot inv.logit
+#' @importFrom optimx optimx
+#' @importFrom MASS ginv
+#' @importFrom mvtnorm pmvnorm dmvnorm
+#' @importFrom stats dnorm qnorm pnorm lm var coef cor
 #' @export
 
 

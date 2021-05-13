@@ -133,7 +133,7 @@ probofsuccess_21<-function(mle,n,dat,eta)
   
   upper=c(eta[1],eta[2],0)
   
-  a=cuhre(f=integrand_21,nComp=2,lower=lower,upper=upper,flags=list(verbose=0,final=1,pseudo.random=0,mersenne.seed=NULL),
+  a=cuhre(f=integrand_21,nComp=2,lowerLimit=lower,upperLimit=upper,flags=list(verbose=0,final=1,pseudo.random=0,mersenne.seed=NULL),
           meantreat=meantreat,meanuntreat=meanuntreat,mle=mle)
   #return(c(a$value[1],a$value[2]))
   #return(c(a$value[1]-a$value[2],a$value[1],a$value[2]))
