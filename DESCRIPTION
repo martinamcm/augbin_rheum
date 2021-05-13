@@ -10,7 +10,6 @@ Description: Fits the augmented binary method...
 License: MIT + file LICENSE
 Encoding: UTF-8
 Imports:
-    augbin_rheum
     MASS,
     mvtnorm,
     stats,
