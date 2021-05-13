@@ -228,7 +228,7 @@ LatVarfunc_11<-function(dat,eta){
   hess<-attr(mlefit,"details")["nlminb",]$nhatend
   mlecov=ginv(hess)
   mlecov<-nearPD(mlecov)$mat
-  se<-sqrt(diag(mlecov))
+  se<-sqrt(diag(as.matrix(mlecov)))
   
   part<-partials_11(mle,n,dat,eta)
   meanOR<-part[22]
