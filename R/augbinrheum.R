@@ -50,24 +50,20 @@ augbinrheum <- function(data= NULL,
   ####### Computations ########################
     
     if(cts==2 && bin==1){
-      source('LatVar_21.R', local=TRUE)
       
-      Analysis<-LatVarfunc(data,dichot)
+      Analysis<-LatVarfunc_21(data,dichot)
       
     }else if(cts==2 && bin==0){
-      source('LatVar_20.R', local=TRUE)
       
-      Analysis<-LatVarfunc(data,dichot)
+      Analysis<-LatVarfunc_20(data,dichot)
       
     }else if(cts==1 && bin==1){
-      source('LatVar_11.R', local=TRUE)
       
-      Analysis<-LatVarfunc(data,dichot)
+      Analysis<-LatVarfunc_11(data,dichot)
       
     }else{
-      source('LatVar_10.R', local=TRUE)
       
-      Analysis<-LatVarfunc(data,dichot)
+      Analysis<-LatVarfunc_10(data,dichot)
     }
   
  

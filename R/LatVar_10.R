@@ -1,22 +1,9 @@
-library(MASS)
-library(stats)
-library(mvtnorm)
-library(nlme)
-library(boot)
-library(matrixcalc)
-library(numDeriv)
-library(cubature)
-library(optimx)
-library(brglm)
-library(Matrix)
-library(matrixcalc)
+
 
 ##Likelihood function
 
-f<-function(X,dat)
+f_10<-function(X,dat)
 {
-  #data
-  #dat<-dat[!is.na(dat[,3]),]#change this to baseline measure when it is added? 
   
   #parameters
   alpha0 <- X[1]
@@ -47,7 +34,7 @@ upperlim <- c(+Inf,+Inf,+Inf,+Inf)
 
 #Probability of response
 
-integrand<-function(Zint,meantreat,meanuntreat,mle)
+integrand_10<-function(Zint,meantreat,meanuntreat,mle)
 {
   sigmahat<-(exp(mle[3]))^2
   
@@ -61,7 +48,7 @@ integrand<-function(Zint,meantreat,meanuntreat,mle)
 }
 
 
-probofsuccess<-function(mle,n,dat,eta)
+probofsuccess_10<-function(mle,n,dat,eta)
 {
   n=n
   
@@ -75,7 +62,7 @@ probofsuccess<-function(mle,n,dat,eta)
   lower=qnorm(1e-15,minmean1,exp(mle[3]))
   upper=eta
   
-  a=cuhre(f=integrand,nComp=2,lower=lower,upper=upper,flags=list(verbose=0,final=1,pseudo.random=0,mersenne.seed=NULL),
+  a=cuhre(f=integrand_10,nComp=2,lower=lower,upper=upper,flags=list(verbose=0,final=1,pseudo.random=0,mersenne.seed=NULL),
           meantreat=meantreat,meanuntreat=meanuntreat,mle=mle)
   #return(c(a$value[1],a$value[2]))
   #return(c(a$value[1]-a$value[2],a$value[1],a$value[2]))
@@ -87,10 +74,10 @@ probofsuccess<-function(mle,n,dat,eta)
 
 #Partial derivatives
 
-partials<-function(mle,n,dat,eta)
+partials_10<-function(mle,n,dat,eta)
 {
   p=length(mle)
-  fit1<-probofsuccess(mle,n,dat,eta)
+  fit1<-probofsuccess_10(mle,n,dat,eta)
   fitOR<-fit1[1]
   fitRR<-fit1[2]
   fitRD<-fit1[3]
@@ -102,9 +89,9 @@ partials<-function(mle,n,dat,eta)
     valueupdate=mle
     valueupdate[i]=valueupdate[i]+0.000001
     
-    updateprobOR=probofsuccess(valueupdate,n,dat,eta)[1]
-    updateprobRR=probofsuccess(valueupdate,n,dat,eta)[2]
-    updateprobRD=probofsuccess(valueupdate,n,dat,eta)[3]
+    updateprobOR=probofsuccess_10(valueupdate,n,dat,eta)[1]
+    updateprobRR=probofsuccess_10(valueupdate,n,dat,eta)[2]
+    updateprobRD=probofsuccess_10(valueupdate,n,dat,eta)[3]
     
     partials.augbinOR[i]=(updateprobOR-fitOR)/0.000001
     partials.augbinRR[i]=(updateprobRR-fitRR)/0.000001
@@ -126,7 +113,7 @@ boxcoxtransform=function(y,lambda)
 
 #Standard binary
 
-differenceinprob.binary=function(glm1,t,x1)
+differenceinprob.binary_10=function(glm1,t,x1)
 {
   #get fitted probs for each arm from model:
   
@@ -141,10 +128,10 @@ differenceinprob.binary=function(glm1,t,x1)
 }
 
 
-partialderivatives.binary=function(glm1,t,x1)
+partialderivatives.binary_10=function(glm1,t,x1)
 {
   
-  value1=differenceinprob.binary(glm1,t,x1)
+  value1=differenceinprob.binary_10(glm1,t,x1)
   valueOR=value1[1]
   valueRR=value1[2]
   valueRD=value1[3]
@@ -157,9 +144,9 @@ partialderivatives.binary=function(glm1,t,x1)
     tempglm1=glm1
     tempglm1$coef[i]=tempglm1$coef[i]+0.00001
     
-    partialsOR[i]=(differenceinprob.binary(tempglm1,t,x1)[1]-valueOR)/0.00001
-    partialsRR[i]=(differenceinprob.binary(tempglm1,t,x1)[2]-valueRR)/0.00001
-    partialsRD[i]=(differenceinprob.binary(tempglm1,t,x1)[3]-valueRD)/0.00001
+    partialsOR[i]=(differenceinprob.binary_10(tempglm1,t,x1)[1]-valueOR)/0.00001
+    partialsRR[i]=(differenceinprob.binary_10(tempglm1,t,x1)[2]-valueRR)/0.00001
+    partialsRD[i]=(differenceinprob.binary_10(tempglm1,t,x1)[3]-valueRD)/0.00001
     
   }
   
@@ -175,7 +162,7 @@ results<-as.list(NULL)
 
 #Function for treat effects and CIs from both models 
 
-LatVarfunc<-function(dat,eta){
+LatVarfunc_10<-function(dat,eta){
   n=dim(dat)[1]
   
   #Starting values
@@ -187,14 +174,14 @@ LatVarfunc<-function(dat,eta){
   
   #Latent Variable
   
-  mlefit=optimx(X,f,dat=dat,lower=lowerlim,upper=upperlim,method="nlminb",control=list(rel.tol=1e-12))
+  mlefit=optimx(X,f_10,dat=dat,lower=lowerlim,upper=upperlim,method="nlminb",control=list(rel.tol=1e-12))
   mle<-coef(mlefit[1,])
   hess<-attr(mlefit,"details")["nlminb",]$nhatend
   mlecov=ginv(hess)
   mlecov<-nearPD(mlecov)$mat
   se<-sqrt(diag(mlecov))
   
-  part<-partials(mle,n,dat,eta)
+  part<-partials_10(mle,n,dat,eta)
   meanOR<-part[13]
   partsOR<-part[1:4]
   varianceOR=t(partsOR)%*%mlecov%*%partsOR
@@ -225,7 +212,7 @@ LatVarfunc<-function(dat,eta){
   
   glm1=brglm(success.binary~dat[,2]+dat[,4],family="binomial")
   
-  partial.binary=partialderivatives.binary(glm1,dat[,2],dat[,4])
+  partial.binary=partialderivatives.binary_10(glm1,dat[,2],dat[,4])
   covariance=summary(glm1)$cov.unscaled
   
   mean.binaryOR=partial.binary[10]
@@ -258,3 +245,4 @@ LatVarfunc<-function(dat,eta){
   results<-c(result.latent,result.bin,modres,mle,se)
   return(results)
 }
+
