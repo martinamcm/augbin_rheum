@@ -70,9 +70,6 @@ f_11<-function(X,dat)
   return(-Tfinal)
 }
 
-lowerlim <- c(-Inf,-Inf,-Inf,-Inf,-Inf,-Inf,-Inf)
-upperlim <- c(+Inf,+Inf,+Inf,+Inf,+Inf,+Inf,+Inf)
-
 
 #Probability of response
 integrand_11<-function(Zint,meantreat,meanuntreat,mle)
@@ -223,12 +220,12 @@ LatVarfunc_11<-function(dat,eta){
   
   #Latent Variable method
   
-  mlefit=optimx(X,f_11,dat=dat,lower=lowerlim,upper=upperlim,method="nlminb",control=list(rel.tol=1e-12))
+  mlefit=optimx(X,f_11,dat=dat,lower=rep(-Inf,length(X)),upper=rep(+Inf,length(X)),method="nlminb",control=list(rel.tol=1e-12))
   mle<-coef(mlefit[1,])
   hess<-attr(mlefit,"details")["nlminb",]$nhatend
   mlecov=ginv(hess)
   mlecov<-nearPD(mlecov)$mat
-  se<-sqrt(diag(as.matrix(mlecov)))
+  se<-sqrt(diag(mlecov))
   
   part<-partials_11(mle,n,dat,eta)
   meanOR<-part[22]
