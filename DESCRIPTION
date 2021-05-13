@@ -9,9 +9,10 @@ Authors@R: c(person(given   = "Martina",
 Description: Fits the augmented binary method...
 License: MIT + file LICENSE
 Encoding: UTF-8
+Depends:
+    cubature
 Imports:
     tibble,
-    cubature,
     MASS,
     mvtnorm,
     stats,
