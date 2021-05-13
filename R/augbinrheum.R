@@ -45,8 +45,7 @@ augbinrheum <- function(data= NULL,
   
   ####### check input parameters ###############
 
-  check_augbinrheum_data(data,cts,bin,dichot)  
-
+  
 
   ####### Computations ########################
     
