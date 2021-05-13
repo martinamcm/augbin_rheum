@@ -53,18 +53,11 @@
     if (cts==1 && bin==1 && !is.numeric(data[,4])) {
       stop("Column 4 of data must be numeric")
     } else {
-      if (any(!(data[,4] %in% 0:1))) {
+      if (cts==1 && bin==1 && any(!(data[,4] %in% 0:1))) {
         stop("Elements of binary component must be equal to 0 or 1")
       }
     }
     
-    if (cts==1 && bin==1 && !is.numeric(data[,4])) {
-      stop("Column 4 of data must be numeric")
-    } else {
-      if (any(!(data[,4] %in% 0:1))) {
-        stop("Elements of binary component must be equal to 0 or 1")
-      }
-    }
     
   
   # Check treatment
