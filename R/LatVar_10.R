@@ -27,9 +27,6 @@ f_10<-function(X,dat)
   return(-Tfinal)
 }
 
-lowerlim <- c(-Inf,-Inf,-Inf,-Inf)
-upperlim <- c(+Inf,+Inf,+Inf,+Inf)
-
 
 
 #Probability of response
@@ -174,12 +171,12 @@ LatVarfunc_10<-function(dat,eta){
   
   #Latent Variable
   
-  mlefit=optimx(X,f_10,dat=dat,lower=lowerlim,upper=upperlim,method="nlminb",control=list(rel.tol=1e-12))
+  mlefit=optimx(X,f_10,dat=dat,lower=rep(-Inf,length(X)),upper=rep(+Inf,length(X)),method="nlminb",control=list(rel.tol=1e-12))
   mle<-coef(mlefit[1,])
   hess<-attr(mlefit,"details")["nlminb",]$nhatend
   mlecov=ginv(hess)
   mlecov<-nearPD(mlecov)$mat
-  se<-sqrt(diag(mlecov))
+  se<-sqrt(mlecov[col(mlecov)==row(mlecov)])
   
   part<-partials_10(mle,n,dat,eta)
   meanOR<-part[13]
