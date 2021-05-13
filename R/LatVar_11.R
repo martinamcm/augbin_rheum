@@ -229,7 +229,7 @@ LatVarfunc_11<-function(dat,eta){
   print(mlecov)
   mlecov<-nearPD(mlecov)$mat
   print(mlecov)
-  se<-sqrt(diag(mlecov))
+  se<-sqrt(mlecov[col(mlecov)==row(mlecov)])
   print(se)
   
   part<-partials_11(mle,n,dat,eta)
