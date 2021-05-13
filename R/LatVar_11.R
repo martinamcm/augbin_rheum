@@ -222,12 +222,18 @@ LatVarfunc_11<-function(dat,eta){
   
   mlefit=optimx(X,f_11,dat=dat,lower=rep(-Inf,length(X)),upper=rep(+Inf,length(X)),method="nlminb",control=list(rel.tol=1e-12))
   mle<-coef(mlefit[1,])
+  print(mle)
   hess<-attr(mlefit,"details")["nlminb",]$nhatend
+  print(hess)
   mlecov=ginv(hess)
+  print(mlecov)
   mlecov<-nearPD(mlecov)$mat
+  print(mlecov)
   se<-sqrt(diag(mlecov))
+  print(se)
   
   part<-partials_11(mle,n,dat,eta)
+  print(part)
   meanOR<-part[22]
   partsOR<-part[1:7]
   varianceOR=t(partsOR)%*%mlecov%*%partsOR
