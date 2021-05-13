@@ -20,7 +20,6 @@ Imports:
     optimx,
     brglm,
     numDeriv,
-    nlme, 
     boot,
     Matrix
 Date: 2021-05-12
