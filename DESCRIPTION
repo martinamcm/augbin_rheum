@@ -12,7 +12,8 @@ Encoding: UTF-8
 Imports:
     MASS,
     mvtnorm,
-    stats,
+    stats
+Depends:
     optimx,
     brglm,
     numDeriv
