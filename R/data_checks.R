@@ -1,6 +1,6 @@
 
 
-  check_augbinlatent_data  <- function(data,cts,bin,dichot) {
+  check_augbinrheum_data  <- function(data,cts,bin,dichot) {
  
     # Check number of components 
     
