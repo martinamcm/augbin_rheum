@@ -51,19 +51,23 @@ augbinrheum <- function(data= NULL,
     
     if(cts==2 && bin==1){
       
-      Analysis<-LatVarfunc_21(data,dichot)
+      Analysis <- LatVarfunc_21(data,dichot)
+      mle <- Analysis[23:35]
       
     }else if(cts==2 && bin==0){
       
-      Analysis<-LatVarfunc_20(data,dichot)
+      Analysis <- LatVarfunc_20(data,dichot)
+      mle <- Analysis[23:31]
       
     }else if(cts==1 && bin==1){
       
-      Analysis<-LatVarfunc_11(data,dichot)
+      Analysis <- LatVarfunc_11(data,dichot)
+      mle <- Analysis[23:29]
       
     }else{
       
-      Analysis<-LatVarfunc_10(data,dichot)
+      Analysis <- LatVarfunc_10(data,dichot)
+      mle <- Analysis[23:26]
     }
   
  
@@ -81,8 +85,9 @@ augbinrheum <- function(data= NULL,
     RiskDiff <- Analysis[c(8,19)]
     ClowRD <- Analysis[c(7,18)]
     CuppRD <- Analysis[c(9,20)]
-
-    
+      
+      
+      
     output <-  list(response_prob = tibble::tibble(Method = Method,
                                                    treat_resp = ResponseT,
                                                    control_resp = ResponseC),
@@ -100,7 +105,9 @@ augbinrheum <- function(data= NULL,
                     risk_diff = tibble::tibble(Method = Method,
                                                est = exp(RiskDiff),
                                                ci_lower = exp(ClowRD),
-                                               ci_upper = exp(CuppRD))
+                                               ci_upper = exp(CuppRD)),
+                    
+                    param_est = mle
                     )
     
     output    
