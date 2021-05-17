@@ -22,7 +22,7 @@ functionality and examples available at
 Function `augbinrheum` is used to conduct the analysis with the
 following arguments:
 
-  - `Data` Data with columns ordered as follows: patient ID, treatment
+  - `data` Data with columns ordered as follows: patient ID, treatment
     arm, continuous outcome(s), binary outcome followed by the baseline
     continuous measure(s)
   - `cts` Number of continuous outcomes in the composite which can be 1
