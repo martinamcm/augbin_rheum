@@ -103,9 +103,9 @@ augbinrheum <- function(data= NULL,
                                                 ci_upper = exp(CuppRR)),
                     
                     risk_diff = tibble::tibble(Method = Method,
-                                               est = exp(RiskDiff),
-                                               ci_lower = exp(ClowRD),
-                                               ci_upper = exp(CuppRD)),
+                                               est = RiskDiff,
+                                               ci_lower = ClowRD,
+                                               ci_upper = CuppRD),
                     
                     param_est = mle
                     )
