@@ -1,7 +1,8 @@
-#' Graphical user interface to multi-arm trial design determination
+#' Graphical user interface to analyse composite endpoints using the augmented binary method
 #'
-#' \code{gui()} run an R Shiny web browser based graphical user interface for
-#' augbinrheum. For details of app functionality, see \href{https://github.com/martinamcm/AugBin}{AugBin}
+#' \code{gui()} runs an R Shiny web browser based graphical user interface for
+#' \code{\link{augbinrheum}}. For details of Shiny app functionality, 
+#' see \href{https://github.com/martinamcm/AugBin}{AugBin}
 #' @examples
 #' # Launch the graphical user interface
 #' \dontrun{gui()}
