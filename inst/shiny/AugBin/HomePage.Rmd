@@ -1,0 +1,19 @@
+---
+title: ""
+output: html_document
+---
+
+<font size="5"> **AugBin:** Analysis of mixed outcome composite endpoints </font>
+
+Welcome to the GUI for efficient analysis of mixed outcome composite responder endpoints. The app allows for the analysis of composite endpoints comprised of one or two continuous components and zero or one binary components. Multiple discrete components may be included by combining them to form a single binary indicator. The methods implemented in this app are discussed in (McMenamin et al., 2019). 
+
+A tutorial on how to use the app, along with R code and example data, is available at <https://github.com/martinamcm/AugBin>. 
+
+<font size="4"> **References** </font>
+
+McMenamin M, Barrett JK, Berglind A, Wason JMS. Latent variable modelling for
+complex composite endpoints. 2019; <https://arxiv.org/abs/1902.07037>
+
+Wason JM and Seaman SR. Using continuous data on tumour measurements to improve
+inference in phase II cancer studies. Statistics in Medicine. 2013;32(26):4639–4650.
+<https://doi.org/10.1002/sim.5867>

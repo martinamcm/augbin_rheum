@@ -1,0 +1,38 @@
+---
+title: ""
+output: html_document
+
+---
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 12px;
+  }
+  
+title {
+  font-size: 38px;
+  color: DarkRed;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+ <font size="4">  **Univariate Normal Model** </font>
+
+Let $Y_{i1}$ represent the observed continuous outcome for patient $i \in N$ and $\mathbf{Y}=(\mathbf{Y_{1}},\ldots \mathbf{Y_{N}})^{T}$ represent the observed outcomes for all patients.  $T_{i}$ represents the treatment indicator for patient i and $y_{i10}$ is the baseline measure for $Y_{i1}$. 
+
+The mean structure for the outcome is shown below, where the baseline measures $y_{10}$ is included in the model for $Y_{i1}$. 
+
+$$\begin{equation}
+Y_{i1}=\alpha_{0}+\alpha_{1}T_{i}+\alpha_{2}y_{i10}+\varepsilon_{i1}
+\end{equation}$$
+
+We can model the error term as normal with zero mean and variance $\sigma^{2}$. The likelihood contribution for patient i is as shown below
+
+$$\begin{equation}
+l\left(\boldsymbol{\theta};Y_{i1}\right)=f(Y_{i1};\boldsymbol{\theta})
+\end{equation}$$
+
+

@@ -1,0 +1,52 @@
+---
+title: "AugBin analysis report"
+output: pdf_document
+date: '`r format(Sys.time(), "%d %B, %Y")`'
+params:
+  data: NA
+  dich1: NA
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Data summary
+
+```{r,echo=FALSE}
+library(knitr)
+
+```
+
+
+```{r,fig.width=5, fig.height=3,fig.align="center"}
+require(ggplot2)
+ read_chunk("LatVarAnalysis_10.R")
+
+ Analysis<-LatVarfunc(params$data,params$dich1)
+
+print(Analysis)
+```
+
+## Analysis
+
+The probabilty of PSA response is determined using the binary method, which treats the PSA response score as a binary responder index and the augmented approach, which uses the continuous PSA measurement. 
+
+The probability of response from each method is shown in the table and plot below for response threshold `r params$thres`% and truncation value `r params$trunc`%.
+
+```{r,fig.width=4,fig.height=1.5,fig.align="center"}
+
+library(MASS)
+library(boot)
+library(Hmisc)
+library(knitr)
+
+
+
+```
+
+
+##References 
+
+

@@ -1,0 +1,50 @@
+---
+title: ""
+output: html_document
+---
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 12px;
+  }
+  
+title {
+  font-size: 38px;
+  color: DarkRed;
+}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+ <font size="4">  **Bivariate Normal Model** </font>
+
+Let $\mathbf{Y_{i}}=(Y_{i1}, Y_{i2})^{T}$ represent the vector of observed outcomes for patient $i \in N$ and $\mathbf{Y}=(\mathbf{Y_{1}},\ldots \mathbf{Y_{N}})^{T}$ represent the observed outcomes for all patients. $Y_{i1}$ and $Y_{i2}$ denote the continuous measures. $T_{i}$ represents the treatment indicator for patient i, $y_{i10}$ and $y_{i20}$ are the baseline measures for $Y_{i1}$ and $Y_{i2}$ respectively. 
+
+The mean structure for the outcomes is shown below. The baseline measures $y_{10}$ are included in the model for $Y_{i1}$ and $Y_{i2}$ respectively. 
+
+$$\begin{align}
+\begin{split}
+Y_{i1}&=\alpha_{0}+\alpha_{1}T_{i}+\alpha_{2}y_{i10}+\varepsilon_{i1}\\\\
+Y_{i2}&=\beta_{0}+\beta_{1}T_{i}+\beta_{2}y_{i20}+\varepsilon_{i2}
+\end{split}
+\end{align}$$
+
+We can model the error terms as bivariate normal with zero mean and variance-covariance matrix $\Sigma$.
+
+$$\begin{align}
+(\varepsilon_{i1}, \varepsilon_{i2}) \sim N(\boldsymbol{0}, \Sigma) &&
+\Sigma=\begin{pmatrix}
+\sigma_{1}^{2} & \rho_{12}\sigma_{1}\sigma_{2}  \\
+\rho_{12}\sigma_{1}\sigma_{2} & \sigma_{2}^{2}   \\
+\end{pmatrix}
+\end{align}$$
+
+The joint likelihood contribution for patient i is as shown below
+
+$$\begin{equation}
+l\left(\boldsymbol{\theta};\mathbf{Y_{i}}\right)=f(Y_{i1}^{},Y_{i2}^{};\boldsymbol{\theta})
+\end{equation}$$
+
+
